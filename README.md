@@ -2,7 +2,7 @@
 
 <span style="color: #FFFFFF; font-size: 36px; background-color: #000000;">Brisa</span>
 
-#🤑
+🤑
 ---
  
 
