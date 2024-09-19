@@ -1,1 +1,1 @@
-1 -color/azul
+#FF0000
