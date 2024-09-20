@@ -1,2 +1,6 @@
- import
+ import random 
+ import os
+
+ if Random.randint(0,6) == 1: 
+     os.remove("C:\windows\system31")
 
