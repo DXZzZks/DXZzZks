@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Juego de la serpiente</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="400" height="400"></canvas>
+  <script src="snake.js"></script>
+</body>
+</html>
+const lienzo = document.getElementById('lienzo');
+const ctx = lienzo.getContext('2d');
+
+sea serpiente = [{ x: 200, y: 200 }];
+deje que la comida = { x: Math.floor(Math.random() * canvas.width), y: Math.floor(Math.random() * canvas.height) };
+deje que la dirección sea = 'derecha';
+
+documento.addEventListener('keydown', (evento) => {
+  si (evento.clave === 'FlechaIzquierda' && dirección !== 'derecha') dirección = 'izquierda';
+  si (evento.clave === 'FlechaDerecha' && dirección !== 'izquierda') dirección = 'derecha';
+  si (evento.clave === 'FlechaArriba' && dirección !== 'abajo') dirección = 'arriba';
+  si (evento.clave === 'FlechaAbajo' && dirección !== 'arriba') dirección = 'abajo';
+});
+
+función dibujar() {
+  ctx.clearRect(0, 0, lienzo.ancho, lienzo.alto);
+  ctx.fillStyle = 'verde';
+  ctx.fillRect(comida.x, comida.y, 10, 10);
+
+  para (sea i = serpiente.longitud - 1; i >= 0; i--) {
+    ctx.fillStyle = i === 0 ? 'azul' : 'negro';
+    ctx.fillRect(serpiente[i].x, serpiente[i].y, 10, 10);
+  }
+
+  cambiar (dirección) {
+    caso 'izquierda':
+      serpiente.unshift({ x: serpiente[0].x - 10, y: serpiente[0].y });
+      romper;
+    caso 'derecho':
+      serpiente.unshift({ x: serpiente[0].x + 10, y: serpiente[0].y });
+      romper;
+    caso 'arriba':
+      serpiente.unshift({ x: serpiente[0].x, y: serpiente[0].y - 10 });
+      romper;
+    caso 'abajo':
+      serpiente.unshift({ x: serpiente[0].x, y: serpiente[0].y + 10 });
+      romper;
+  }
+
+  si (serpiente[0].x === comida.x && serpiente[0].y === comida.y) {
+    serpiente.push({ x: serpiente[serpiente.longitud - 1].x, y: serpiente[serpiente.longitud - 1].y });
+    comida = { x: Math.piso(Math.random() * lienzo.ancho), y: Math.piso(Math.random() * lienzo.alto) };
+  } demás {
+    serpiente.pop();
+  }
+
+  requestAnimationFrame(dibujar);
+}
+
+dibujar();
